@@ -1,4 +1,8 @@
-from flask import Flask, request, jsonify, send_from_directory
+
+from app.main import application
+
+
+'''from flask import Flask, request, jsonify, send_from_directory
 import os
 from uuid import uuid4
 from app.main import application
@@ -37,3 +41,4 @@ def uploaded_file(filename):
 
 # ESTA ES LA LÍNEA CLAVE PARA PASSENGER
 application = app
+'''
