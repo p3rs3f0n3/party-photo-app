@@ -1,26 +1,22 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from .routes import photos, reactions
-from fastapi.staticfiles import StaticFiles
-import os
+from flask import Flask
+from app.routes.photos import photos_bp
+from app.routes.reactions import reactions_bp
+from flask_cors import CORS
 
-# Asegura que exista la carpeta uploads
-os.makedirs("uploads", exist_ok=True)
+app = Flask(__name__)
+CORS(app)
 
-app = FastAPI()
+# Registrar blueprints
+app.register_blueprint(reactions_bp)
+app.register_blueprint(photos_bp, url_prefix="/photos")
 
-# CORS para que React pueda conectarse
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Permitir cualquier origen por ahora
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
-# Incluir rutas
-app.include_router(photos.router, prefix="/photos")
-app.include_router(reactions.router, prefix="/reactions")
-# Sirve los archivos estáticos
-app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
+@app.route('/')
+def index():
+    return {"message": "Backend Flask OK"}
 
+# Exportar como 'application' para Passenger
+application = app
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8000, debug=True)

@@ -8,7 +8,7 @@ import './index.css'; // ✅ IMPORTACIÓN NECESARIA
 
 ReactDOM.createRoot(document.getElementById('root')).render( 
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.VITE_BASE_URL}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/upload" element={<Upload />} />

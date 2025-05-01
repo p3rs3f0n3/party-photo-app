@@ -1,6 +1,8 @@
 // frontend/src/api/api.js
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
-//const API_URL ="https://2995-2800-486-c06-4e00-15cb-1045-e26a-743d.ngrok-free.app";
+//const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
+
+console.log("API_URL:", API_URL);
 
 export async function uploadPhoto(photoFile) {
   const formData = new FormData();

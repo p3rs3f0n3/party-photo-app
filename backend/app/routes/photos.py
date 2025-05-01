@@ -1,29 +1,30 @@
-from fastapi import APIRouter, File, UploadFile
-from fastapi.responses import JSONResponse
+from flask import Blueprint, request, jsonify, send_from_directory
 import os
 from uuid import uuid4
-from pathlib import Path
 
-router = APIRouter()
+photos_bp = Blueprint('photos', __name__)
 
-UPLOAD_DIR = "uploads"
-
+UPLOAD_DIR = 'uploads'
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 
-@router.post("/upload")
-async def upload_photo(file: UploadFile = File(...)):
-    file_ext = file.filename.split(".")[-1]
-    file_name = f"{uuid4()}.{file_ext}"
-    file_path = os.path.join(UPLOAD_DIR, file_name)
+@photos_bp.route('/upload', methods=['POST'])
+def upload_photo():
+    if 'file' not in request.files:
+        return jsonify({"error": "No file part"}), 400
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({"error": "No selected file"}), 400
+    file_ext = file.filename.rsplit('.', 1)[-1]
+    filename = f"{uuid4()}.{file_ext}"
+    filepath = os.path.join(UPLOAD_DIR, filename)
+    file.save(filepath)
+    return jsonify({"message": "Foto subida con éxito", "filename": filename})
 
-    with open(file_path, "wb") as buffer:
-        buffer.write(await file.read())
+@photos_bp.route('/gallery', methods=['GET'])
+def get_gallery():
+    files = os.listdir(UPLOAD_DIR)
+    return jsonify({"photos": files})
 
-    return JSONResponse(content={"message": "Foto subida con éxito", "filename": file_name})
-
-@router.get("/gallery")
-async def get_gallery():
-    uploads_path = Path("uploads")
-    uploads_path.mkdir(exist_ok=True)
-    files = [f.name for f in uploads_path.iterdir() if f.is_file()]
-    return {"photos": files}
+@photos_bp.route('/uploads/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(UPLOAD_DIR, filename)

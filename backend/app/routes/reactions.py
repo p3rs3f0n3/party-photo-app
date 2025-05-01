@@ -1,5 +1,13 @@
-from fastapi import APIRouter
+from flask import Blueprint, request, jsonify
 
-router = APIRouter()
+reactions_bp = Blueprint('reactions', __name__)
 
-# Aquí después vamos a poner las rutas de "me gusta" y comentarios
+@reactions_bp.route('/reactions/like', methods=['POST'])
+def like_photo():
+    return jsonify({"message": "Like registrado"})
+
+@reactions_bp.route('/reactions/comment', methods=['POST'])
+def comment_photo():
+    data = request.get_json()
+    comment = data.get('comment', '')
+    return jsonify({"message": f"Comentario recibido: {comment}"})
