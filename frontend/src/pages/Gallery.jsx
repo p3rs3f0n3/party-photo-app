@@ -41,9 +41,9 @@ function Gallery() {
   );
 }
 
-/* producción
- 
 export default Gallery;
+
+/* producción
 
 function Gallery() {
   const [photos, setPhotos] = useState([]);
