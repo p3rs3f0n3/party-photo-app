@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import axios from 'axios';
 
-function Gallery() {
+/*function Gallery() {
   const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
@@ -41,9 +41,9 @@ function Gallery() {
   );
 }
 
-export default Gallery;
+export default Gallery;*/
 
-/* producción
+/*producción*/
 
 function Gallery() {
   const [photos, setPhotos] = useState([]);
@@ -85,4 +85,3 @@ function Gallery() {
 }
 
 export default Gallery;
-*/
