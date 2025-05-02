@@ -8,7 +8,7 @@ function Upload() {
       <Navbar />
       <div className="max-w-2xl mx-auto px-4 py-8">
         <div className="bg-white shadow-xl rounded-2xl p-4 sm:p-6">
-          <h1 className="text-2xl font-bold text-pink-600 mb-4 text-center">
+          <h1 className="text-2xl font-bold text-primary mb-4 text-center">
             📷 Sube tu foto a la fiesta 🎉
           </h1>
 
@@ -19,7 +19,7 @@ function Upload() {
             </div>
           </div>
 
-          <hr className="my-6 border-pink-200" />
+          <hr className="my-6 border-primary-light" />
 
           <div>
             <h3 className="text-lg font-semibold text-gray-700 mb-2">Desde tu galería:</h3>

@@ -42,7 +42,7 @@ function CameraCapture() {
       <button
         onClick={captureAndUpload}
         disabled={loading}
-        className={`w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded ${
+        className={`w-full bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded ${
           loading ? 'opacity-50 cursor-not-allowed' : ''
         }`}
       >

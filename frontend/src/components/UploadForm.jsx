@@ -39,7 +39,7 @@ function UploadForm() {
 
       <button
         type="submit"
-        className="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded mb-2"
+        className="w-full bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded mb-2"
       >
         Subir
       </button>

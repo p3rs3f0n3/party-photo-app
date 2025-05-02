@@ -20,7 +20,7 @@ import axios from 'axios';
     <div className="min-h-screen bg-pink-50">
       <Navbar />
       <div className="max-w-6xl mx-auto px-4 py-8 text-center">
-        <h1 className="text-3xl font-bold text-pink-600 mb-6">🎉 Galería de la Fiesta</h1>
+        <h1 className="text-3xl font-bold text-primary mb-6">🎉 Galería de la Fiesta</h1>
 
         {photos.length === 0 ? (
           <p className="text-gray-500 text-lg">Aún no se han subido fotos 😢</p>
@@ -31,7 +31,7 @@ import axios from 'axios';
                 key={photo}
                 src={`http://localhost:8000/uploads/${photo}`}
                 alt={photo}
-                className="w-full h-40 object-cover rounded-xl shadow-md border border-pink-200"
+                className="w-full h-40 object-cover rounded-xl shadow-md border border-primary-light"
               />
             ))}
           </div>
@@ -63,7 +63,7 @@ function Gallery() {
     <div className="min-h-screen bg-pink-50">
       <Navbar />
       <div className="max-w-6xl mx-auto px-4 py-8 text-center">
-        <h1 className="text-3xl font-bold text-pink-600 mb-6">🎉 Galería de la Fiesta</h1>
+        <h1 className="text-3xl font-bold text-primary mb-6">🎉 Galería de la Fiesta</h1>
 
         {photos.length === 0 ? (
           <p className="text-gray-500 text-lg">Aún no se han subido fotos 😢</p>
@@ -74,7 +74,7 @@ function Gallery() {
                 key={photo}
                 src={`${import.meta.env.VITE_API_URL}/uploads/${photo}`}
                 alt={photo}
-                className="w-full h-40 object-cover rounded-xl shadow-md border border-pink-200"
+                className="w-full h-40 object-cover rounded-xl shadow-md border border-primary-light"
               />
             ))}
           </div>
