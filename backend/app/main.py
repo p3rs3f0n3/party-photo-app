@@ -31,23 +31,6 @@ def index():
 
 @app.route('/login/host', methods=['POST'])
 def login_host():
-    data = request.json
-    username = data.get('username')
-    password = data.get('password')
-
-    cur = mysql.connection.cursor()
-    cur.execute("SELECT * FROM hosts WHERE username = %s AND password = %s", (username, password))
-    host = cur.fetchone()
-    cur.close()
-
-    if host:
-        return jsonify({'message': 'Login exitoso', 'host_id': host['id']})
-    else:
-        return jsonify({'message': 'Credenciales inválidas'}), 401
-
-
-@app.route('/login/host', methods=['POST'])
-def login_host():
     try:
         data = request.json
         username = data.get('username')
